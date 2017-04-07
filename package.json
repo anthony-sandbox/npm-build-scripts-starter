@@ -1,0 +1,42 @@
+{
+  "name": "npm-build-scripts-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm-run-all -s clean build",
+    "start": "npm-run-all -p app watch",
+    "clean": "rimraf dist && mkdirp dist/public/js",
+    "app": "babel-node app",
+    "build": "npm-run-all build:html build:css",
+    "build:html": "pug src/views/index.pug -o dist/",
+    "build:css": "npm-run-all -s sass unUsedCSS minifyCSS",
+    "build:js": "npm-run-all -s browserify uglify",
+    "browserify": "browserify src/js/app.bundle.js > dist/public/js/app.bundle.js",
+    "uglify": "uglifyjs  --source-map dist/public/js/app.bundle.min.js.map dist/public/js/app.bundle.js > dist/public/js/app.bundle.min.js",
+    "watch": "npm-run-all -p watch:html watch:css",
+    "watch:html": "onchange \"src/views/**/*.pug\" -- npm-run-all -s build:html build:css",
+    "watch:css": "onchange \"src/scss/**/*.scss\" -- npm run build:css",    
+    "sass": "node-sass src/scss/style.scss -o dist/public/css",
+    "minifyCSS": "postcss dist/public/css/style.css -o dist/public/css/style.min.css -m",
+    "unUsedCSS": "babel-node bin/purifyCSS"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-env": "^1.3.2",
+    "cssnano": "^3.10.0",
+    "cssnano-cli": "^1.0.5",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.5.2",
+    "postcss": "^5.2.16",
+    "postcss-cli": "^3.1.1",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-font-magician": "^1.6.1",
+    "purify-css": "^1.1.9",
+    "sugarss": "^0.2.0"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}

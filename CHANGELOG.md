@@ -1,0 +1,19 @@
+# 04/06/2017 / 1.0.0
+- Setup git repo
+- Setup package.json
+- Install babel-core, babel-cli, and babel-preset-env with a .babelrc file
+- Install express and create app.js file with a single index route
+- Install pug and pug-cli
+- Create src directory with js, scss, and views child directory
+- Setup index.pug file in view directory, style.scss in scss directory and app.bundle.js in the js directory
+- Install rimraf to delete dist directory after each script run 
+- Setup start script to start the app
+- Setup prestart script to run the clean script
+- Setup app script to start the app
+- Setup clean directory to clean up dist files
+- Setup build script, build:html, build:css, and build:js 
+- Setup browserify and uglify to create js bundles
+- Setup watch, watch:html, watch:css to watch src directories for changes
+- Setup sass script to parse scss files
+- Setup minifCSS to run postcss plugins
+- Setup unUsedCSS to remove any unused css rules
